@@ -12,6 +12,7 @@ class TimeServer
 
   void start();
 
+  void setThreadNum (int numThreads);
  private:
   void onConnection(const muduo::net::TcpConnectionPtr& conn);
 

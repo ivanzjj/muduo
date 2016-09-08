@@ -10,6 +10,7 @@
 
 #include <stdio.h>
 #include <unistd.h>
+#include <time.h>
 
 using namespace muduo;
 using namespace muduo::net;
@@ -77,9 +78,15 @@ int main(int argc, char* argv[])
     EventLoop loop;
     InetAddress serverAddr(argv[1], 2037);
 
-    TimeClient timeClient(&loop, serverAddr);
-    timeClient.connect();
-    loop.loop();
+    clock_t st = clock ();
+    for (int i=0;i<10000;i++){
+        TimeClient timeClient(&loop, serverAddr);
+        timeClient.connect();
+        loop.loop();
+    }
+    clock_t ee = clock ();
+    //    CLOCKS_PER_SEC
+    LOG_INFO << "total time used: " << static_cast<double>(ee - st) / CLOCKS_PER_SEC;
   }
   else
   {

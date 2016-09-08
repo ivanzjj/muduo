@@ -23,6 +23,10 @@ void TimeServer::start()
   server_.start();
 }
 
+void TimeServer::setThreadNum (int numThreads){
+    server_.setThreadNum (numThreads);
+}
+
 void TimeServer::onConnection(const muduo::net::TcpConnectionPtr& conn)
 {
   LOG_INFO << "TimeServer - " << conn->peerAddress().toIpPort() << " -> "
